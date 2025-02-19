@@ -21,4 +21,14 @@ public class CandidatoController {
     public Candidato create(@RequestBody CreateCandidatoDTO candidato) {
         return this.service.create(candidato);
     }
+
+    @PutMapping("/{id}")
+    public Candidato update(@PathVariable Long id, @RequestBody CreateCandidatoDTO candidato) {
+        return this.service.update(id, candidato);
+    }
+
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable Long id) {
+        this.service.delete(id);
+    }
 }

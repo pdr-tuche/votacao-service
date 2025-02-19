@@ -17,10 +17,10 @@ public class Voto {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(nullable = false)
+    @JoinColumn(nullable = false, name = "eleitor_id")
     private Eleitor eleitor;
 
     @ManyToOne
-    @JoinColumn(nullable = false)
+    @JoinColumn(nullable = false, name = "candidato_id")
     private Candidato candidato;
 }
