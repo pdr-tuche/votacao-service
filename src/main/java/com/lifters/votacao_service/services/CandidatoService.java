@@ -68,7 +68,8 @@ public class CandidatoService {
     }
 
     public void delete(Long id) {
-        List<Voto> votosCandidato = this.votoService.findVotosByCandidato(id);
+        Candidato candidato = this.findById(id);
+        List<Voto> votosCandidato = this.votoService.findVotosByCandidato(candidato.getId());
 
         if (!votosCandidato.isEmpty()) {
             throw new ResponseStatusException(
