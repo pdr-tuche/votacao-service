@@ -3,8 +3,6 @@ package com.lifters.votacao_service.models;
 import jakarta.persistence.*;
 import lombok.Data;
 
-import java.time.LocalDateTime;
-
 @Data
 @Entity
 public class Voto {
