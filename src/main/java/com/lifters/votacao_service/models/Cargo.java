@@ -1,5 +1,6 @@
 package com.lifters.votacao_service.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -20,6 +21,15 @@ public class Cargo {
 
     private String nome;
 
-    @OneToMany(mappedBy = "cargo") // Esse lado não é o dominante
+    @OneToMany(mappedBy = "cargo")
+    @JsonBackReference
     private List<Candidato> candidatos;
+
+    @Override
+    public String toString() {
+        return "Cargo{" +
+                "id=" + id +
+                ", nome='" + nome + '\'' +
+                "}";
+    }
 }

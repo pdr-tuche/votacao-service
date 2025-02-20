@@ -1,5 +1,6 @@
 package com.lifters.votacao_service.models;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -24,5 +25,17 @@ public class Candidato {
 
     @ManyToOne
     @JoinColumn(name = "cargo_id", nullable = false)
+    @JsonManagedReference
     private Cargo cargo;
+
+    @Override
+    public String toString() {
+        return "Candidato{" +
+                "id=" + id +
+                ", nome='" + nome + '\'' +
+                ", numero=" + numero +
+                ", cargoId=" + (cargo != null ? cargo.getId() : null) +
+                "}";
+    }
+
 }
