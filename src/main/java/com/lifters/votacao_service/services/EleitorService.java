@@ -6,8 +6,8 @@ import com.lifters.votacao_service.presentation.CreateEleitorDTO;
 import com.lifters.votacao_service.presentation.UpdateEleitorDTO;
 import com.lifters.votacao_service.repositories.EleitorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -18,6 +18,7 @@ public class EleitorService {
     @Autowired
     private EleitorRepository repository;
     @Autowired
+    @Lazy
     private VotoService votoService;
 
     public Eleitor findById(Long id) {

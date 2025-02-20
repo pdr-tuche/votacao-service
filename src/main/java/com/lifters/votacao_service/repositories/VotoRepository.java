@@ -13,5 +13,8 @@ public interface VotoRepository extends JpaRepository<Voto, Long> {
     List<Voto> findByCandidato(@Param("candidatoId") Long candidatoId);
 
     @Query("SELECT v FROM Voto v WHERE v.eleitor.id = :eleitorId")
-    List<Eleitor> findByEleitor(@Param("eleitorId") Long eleitorId);
+    List<Voto> findByEleitor(@Param("eleitorId") Long eleitorId);
+
+    @Query("SELECT COUNT(v) FROM Voto v WHERE v.sessao.id = :sessaoId")
+    Integer countBySessao(@Param("sessaoId") Long sessaoId);
 }

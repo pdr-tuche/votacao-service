@@ -5,6 +5,7 @@ import com.lifters.votacao_service.models.Sessao;
 import com.lifters.votacao_service.presentation.CreateSessaoDTO;
 import com.lifters.votacao_service.repositories.SessaoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -13,6 +14,10 @@ import org.springframework.web.server.ResponseStatusException;
 public class SessaoService {
     @Autowired
     private SessaoRepository repository;
+
+    @Autowired
+    @Lazy
+    private VotoService votoService;
 
     public Sessao create(CreateSessaoDTO dto) {
         Sessao sessao = Sessao.builder()
@@ -65,11 +70,25 @@ public class SessaoService {
             );
         }
 
-        //TODO: verifficar se nessa sessao ha menos de dois votos para poder encerrar
+        Integer quantidadeVotosSessao = this.votoService.countBySessao(sessao.getId());
+
+        if (quantidadeVotosSessao >= 2) {
+            throw new ResponseStatusException(
+                    HttpStatus.BAD_REQUEST,
+                    ExceptionMessageEnum.SESSAO_NAO_PODE_SER_FECHADA
+                            .getMessage(sessao.getNome())
+            );
+        }
 
         sessao.setAberta(false);
         return repository.save(sessao);
+    }
 
-        return sessao;
+    public Sessao findById(Long id) {
+        return repository.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(
+                        HttpStatus.NOT_FOUND,
+                        ExceptionMessageEnum.SESSAO_NAO_ENCONTRADA.getMessage()
+                ));
     }
 }

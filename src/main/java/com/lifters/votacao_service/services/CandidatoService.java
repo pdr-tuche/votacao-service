@@ -21,6 +21,7 @@ public class CandidatoService {
     @Autowired
     private CandidatoRepository repository;
     @Autowired
+    @Lazy
     private VotoService votoService;
     @Autowired
     @Lazy
