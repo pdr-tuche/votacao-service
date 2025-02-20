@@ -37,9 +37,9 @@ FOREIGN KEY (cargo_id) REFERENCES cargo (id);
 
 
 CREATE TABLE sessao (
-    id SERIAL PRIMARY KEY, -- Identificador único da sessão
-    nome VARCHAR(100) NOT NULL, -- Nome ou descrição da sessão eleitoral
-    aberta BOOLEAN NOT NULL DEFAULT FALSE, -- Flag para indicar se está aberta ou fechada
+    id SERIAL PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    aberta BOOLEAN NOT NULL DEFAULT FALSE
 );
 
 INSERT INTO sessao (nome, aberta) VALUES
@@ -47,4 +47,11 @@ INSERT INTO sessao (nome, aberta) VALUES
 
 ALTER TABLE voto
 ADD COLUMN sessao_id INT NOT NULL,
-ADD CONSTRAINT fk_sessao FOREIGN KEY (sessao_id) REFERENCES sessao_eleitoral (id);
+ADD CONSTRAINT fk_sessao FOREIGN KEY (sessao_id) REFERENCES sessao (id);
+
+
+INSERT INTO candidato (nome, numero, cargo_id) VALUES
+('Kaysla', 22, 1);
+
+INSERT INTO eleitor (nome, cpf) VALUES
+('kaka', '12345678911');
