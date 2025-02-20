@@ -6,23 +6,20 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Entity
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Data
-public class Candidato {
+public class Cargo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
     private String nome;
 
-    @Column(nullable = false, unique = true)
-    private Integer numero;
-
-    @ManyToOne
-    @JoinColumn(name = "cargo_id", nullable = false)
-    private Cargo cargo;
+    @OneToMany(mappedBy = "cargo") // Esse lado não é o dominante
+    private List<Candidato> candidatos;
 }

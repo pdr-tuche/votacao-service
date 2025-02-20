@@ -5,7 +5,9 @@ public enum ExceptionMessageEnum {
     CANDIDATO_NAO_PODE_SER_EXCLUIDO("o candidato não pode ser excluido, pois possui votos"),
     ELEITOR_NAO_PODE_SER_EXCLUIDO("o eleitor não pode ser excluido, pois já votou."),
     ELEITOR_NAO_ENCONTRADO("o eleitor nao foi encontrado."),
-    CPF_NAO_DISPONIVEL("este cpf não esta disponivel.");
+    CPF_NAO_DISPONIVEL("este cpf não esta disponivel."),
+    CARGO_JA_EXISTENTE("o cargo %s já existe."),
+    CARGO_NAO_ENCONTRADO("cargo não encontrado.");
 
     private final String message;
 
