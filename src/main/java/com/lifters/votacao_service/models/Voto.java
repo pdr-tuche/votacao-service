@@ -23,4 +23,8 @@ public class Voto {
     @ManyToOne
     @JoinColumn(nullable = false, name = "candidato_id")
     private Candidato candidato;
+
+    @ManyToOne
+    @JoinColumn(name = "sessao_id", nullable = false)
+    private Sessao sessao;
 }

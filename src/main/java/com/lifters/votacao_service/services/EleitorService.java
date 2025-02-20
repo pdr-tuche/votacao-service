@@ -3,6 +3,7 @@ package com.lifters.votacao_service.services;
 import com.lifters.votacao_service.enums.ExceptionMessageEnum;
 import com.lifters.votacao_service.models.Eleitor;
 import com.lifters.votacao_service.presentation.CreateEleitorDTO;
+import com.lifters.votacao_service.presentation.UpdateEleitorDTO;
 import com.lifters.votacao_service.repositories.EleitorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -46,7 +47,7 @@ public class EleitorService {
         return this.repository.save(eleitor);
     }
 
-    public Eleitor update(Long id, CreateEleitorDTO eleitorDTO) {
+    public Eleitor update(Long id, UpdateEleitorDTO eleitorDTO) {
         Eleitor eleitor = this.findById(id);
         eleitor.setNome(eleitorDTO.nome());
 

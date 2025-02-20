@@ -34,3 +34,17 @@ ALTER TABLE candidato ADD cargo_id INT NOT NULL;
 ALTER TABLE candidato
 ADD CONSTRAINT fk_cargo
 FOREIGN KEY (cargo_id) REFERENCES cargo (id);
+
+
+CREATE TABLE sessao (
+    id SERIAL PRIMARY KEY, -- Identificador único da sessão
+    nome VARCHAR(100) NOT NULL, -- Nome ou descrição da sessão eleitoral
+    aberta BOOLEAN NOT NULL DEFAULT FALSE, -- Flag para indicar se está aberta ou fechada
+);
+
+INSERT INTO sessao (nome, aberta) VALUES
+('Sessão 1', FALSE);
+
+ALTER TABLE voto
+ADD COLUMN sessao_id INT NOT NULL,
+ADD CONSTRAINT fk_sessao FOREIGN KEY (sessao_id) REFERENCES sessao_eleitoral (id);
