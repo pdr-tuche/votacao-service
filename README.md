@@ -60,3 +60,7 @@ mvn jacoco:report
 
 Após a execução, o relatório de coverage será gerado no diretório: `target/site/jacoco/index.html
 `
+
+###### isso foi oq deu pra fazer em dois dias =)
+
+###### continuarei na branch development
