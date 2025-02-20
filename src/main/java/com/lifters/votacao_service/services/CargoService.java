@@ -18,6 +18,9 @@ public class CargoService {
     private CargoRepository repository;
     @Autowired
     private StringHelper stringHelper;
+    @Autowired
+    private CandidatoService candidatoService;
+
 
     public Cargo create(CreateCargoDTO dto) {
         System.out.println("aqio "+ dto.nome());
@@ -66,6 +69,15 @@ public class CargoService {
 
     public void delete(Long id) {
         Cargo cargo = this.findById(id);
+        Integer quantidadeDeCandidatos = this.candidatoService.getQuantidadeCandidatosByCargo(cargo);
+
+        if (quantidadeDeCandidatos > 0) {
+            throw new ResponseStatusException(
+                    HttpStatus.BAD_REQUEST,
+                    ExceptionMessageEnum.CARGO_NAO_PODE_SER_EXCLUIDO.getMessage()
+            );
+        }
+
         this.repository.delete(cargo);
     }
 }
